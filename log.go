@@ -228,14 +228,14 @@ func handleLogMessage(message *logMessage) {
 	}
 
 	resp, err := http.Post(loggerSingleton.url, "text/plain", bytes.NewBuffer(requestBody))
-	defer resp.Body.Close()
+	
 	if err != nil {
 		if loggerSingleton.debugMode {
 			fmt.Printf("There was an error shipping the logs to loggy: %s", err)
 		}
 		return
 	}
-
+	defer resp.Body.Close()
 	if resp.StatusCode == 403 {
 		if loggerSingleton.debugMode {
 			fmt.Println("Token is invalid", resp.Status)
