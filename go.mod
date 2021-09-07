@@ -1,4 +1,4 @@
-module github.com/morlockaerospace/loggy
+module github.com/morlockaerospace/loggly
 
 go 1.13
 
