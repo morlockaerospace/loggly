@@ -181,15 +181,15 @@ func buildAndShipMessage(output string, messageType string, exit bool, d interfa
 
 	if d == nil {
 		// Format message.
-		formattedOutput = fmt.Sprintf("%v [%s] %s", time.Now().Format("2006-01-02T15:04:05.000Z"), messageType, output)
+		formattedOutput = fmt.Sprintf("%v [%s] %s", time.Now().Format(time.RFC3339), messageType, output)
 	} else {
 		// Format message.
-		formattedOutput = fmt.Sprintf("%v [%s] %s %+v", time.Now().Format("2006-01-02T15:04:05.000Z"), messageType, output, d)
+		formattedOutput = fmt.Sprintf("%v [%s] %s %+v", time.Now().Format(time.RFC3339), messageType, output, d)
 	}
 
 	fmt.Println(formattedOutput)
 
-	message := newMessage(time.Now().Format("2006-01-02T15:04:05.000Z"), messageType, output, nil)
+	message := newMessage(time.Now().Format(time.RFC3339), messageType, output, nil)
 
 	// Send message to loggly.
 	ship(message)
